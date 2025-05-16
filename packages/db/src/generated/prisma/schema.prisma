@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String             @id @default(uuid())
+  name          String
+  email         String             @unique
+  password      String
+  avatarUrl     String?
+  spaceCreated  Space[]
+  participated  SpaceParticipant[]
+  chat          Chat[]
+  doubtAsked    Doubt[]            @relation("AskedBy")
+  doubtAnswered Doubt[]            @relation("AnsweredBy")
+}
+
+model Space {
+  id           Int                @id @default(autoincrement())
+  name         String             @unique
+  subject      String
+  isLive       Boolean            @default(true)
+  createdAt    DateTime           @default(now())
+  adminId      String
+  admin        User               @relation(fields: [adminId], references: [id])
+  chat         Chat[]
+  participants SpaceParticipant[]
+  doubt        Doubt[]
+}
+
+model SpaceParticipant {
+  id       String   @id @default(uuid())
+  userId   String
+  spaceId  Int
+  joinedAt DateTime @default(now())
+  role     Roles
+  user     User     @relation(fields: [userId], references: [id])
+  space    Space    @relation(fields: [spaceId], references: [id])
+
+  @@unique([spaceId, userId]) //user space pair is unique.
+}
+
+model Chat {
+  id      Int      @id @default(autoincrement())
+  message String
+  userId  String
+  spaceId Int
+  sentAt  DateTime @default(now())
+  space   Space    @relation(fields: [spaceId], references: [id])
+  user    User     @relation(fields: [userId], references: [id])
+}
+
+model Doubt {
+  id           String   @id @default(uuid())
+  title        String
+  askedById    String
+  answeredById String
+  askedAt      DateTime @default(now())
+  askedSpaceId Int
+  askedBy      User     @relation("AskedBy", fields: [askedById], references: [id])
+  answeredBy   User?    @relation("AnsweredBy", fields: [answeredById], references: [id])
+  askedSpace   Space    @relation(fields: [askedSpaceId], references: [id])
+}
+
+enum Roles {
+  admin
+  moderator
+  member
+}
