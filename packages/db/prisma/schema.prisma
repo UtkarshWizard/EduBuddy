@@ -67,9 +67,9 @@ model Doubt {
   title           String 
   answer          String?     
   askedById       String
-  answeredById    String
+  answeredById    String?
   askedAt         DateTime        @default(now())
-  answeredAt      DateTime        @default(now())
+  answeredAt      DateTime?       @default(now())
   askedSpaceId    Int
   askedBy         User            @relation("AskedBy" , fields: [askedById] , references: [id])
   answeredBy      User?           @relation("AnsweredBy" , fields: [answeredById] , references: [id])

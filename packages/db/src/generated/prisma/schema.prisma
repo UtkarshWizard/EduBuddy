@@ -63,17 +63,17 @@ model Chat {
 }
 
 model Doubt {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   title        String
   answer       String?
   askedById    String
-  answeredById String
-  askedAt      DateTime @default(now())
-  answeredAt   DateTime @default(now())
+  answeredById String?
+  askedAt      DateTime  @default(now())
+  answeredAt   DateTime? @default(now())
   askedSpaceId Int
-  askedBy      User     @relation("AskedBy", fields: [askedById], references: [id])
-  answeredBy   User?    @relation("AnsweredBy", fields: [answeredById], references: [id])
-  askedSpace   Space    @relation(fields: [askedSpaceId], references: [id])
+  askedBy      User      @relation("AskedBy", fields: [askedById], references: [id])
+  answeredBy   User?     @relation("AnsweredBy", fields: [answeredById], references: [id])
+  askedSpace   Space     @relation(fields: [askedSpaceId], references: [id])
 }
 
 enum Roles {
