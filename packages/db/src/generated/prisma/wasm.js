@@ -156,9 +156,11 @@ exports.Prisma.ChatScalarFieldEnum = {
 exports.Prisma.DoubtScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  answer: 'answer',
   askedById: 'askedById',
   answeredById: 'answeredById',
   askedAt: 'askedAt',
+  answeredAt: 'answeredAt',
   askedSpaceId: 'askedSpaceId'
 };
 

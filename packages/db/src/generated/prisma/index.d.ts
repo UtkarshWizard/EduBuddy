@@ -5966,27 +5966,33 @@ export namespace Prisma {
   export type DoubtMinAggregateOutputType = {
     id: string | null
     title: string | null
+    answer: string | null
     askedById: string | null
     answeredById: string | null
     askedAt: Date | null
+    answeredAt: Date | null
     askedSpaceId: number | null
   }
 
   export type DoubtMaxAggregateOutputType = {
     id: string | null
     title: string | null
+    answer: string | null
     askedById: string | null
     answeredById: string | null
     askedAt: Date | null
+    answeredAt: Date | null
     askedSpaceId: number | null
   }
 
   export type DoubtCountAggregateOutputType = {
     id: number
     title: number
+    answer: number
     askedById: number
     answeredById: number
     askedAt: number
+    answeredAt: number
     askedSpaceId: number
     _all: number
   }
@@ -6003,27 +6009,33 @@ export namespace Prisma {
   export type DoubtMinAggregateInputType = {
     id?: true
     title?: true
+    answer?: true
     askedById?: true
     answeredById?: true
     askedAt?: true
+    answeredAt?: true
     askedSpaceId?: true
   }
 
   export type DoubtMaxAggregateInputType = {
     id?: true
     title?: true
+    answer?: true
     askedById?: true
     answeredById?: true
     askedAt?: true
+    answeredAt?: true
     askedSpaceId?: true
   }
 
   export type DoubtCountAggregateInputType = {
     id?: true
     title?: true
+    answer?: true
     askedById?: true
     answeredById?: true
     askedAt?: true
+    answeredAt?: true
     askedSpaceId?: true
     _all?: true
   }
@@ -6117,9 +6129,11 @@ export namespace Prisma {
   export type DoubtGroupByOutputType = {
     id: string
     title: string
+    answer: string | null
     askedById: string
     answeredById: string
     askedAt: Date
+    answeredAt: Date
     askedSpaceId: number
     _count: DoubtCountAggregateOutputType | null
     _avg: DoubtAvgAggregateOutputType | null
@@ -6145,9 +6159,11 @@ export namespace Prisma {
   export type DoubtSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    answer?: boolean
     askedById?: boolean
     answeredById?: boolean
     askedAt?: boolean
+    answeredAt?: boolean
     askedSpaceId?: boolean
     askedBy?: boolean | UserDefaultArgs<ExtArgs>
     answeredBy?: boolean | Doubt$answeredByArgs<ExtArgs>
@@ -6157,9 +6173,11 @@ export namespace Prisma {
   export type DoubtSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    answer?: boolean
     askedById?: boolean
     answeredById?: boolean
     askedAt?: boolean
+    answeredAt?: boolean
     askedSpaceId?: boolean
     askedBy?: boolean | UserDefaultArgs<ExtArgs>
     answeredBy?: boolean | Doubt$answeredByArgs<ExtArgs>
@@ -6169,9 +6187,11 @@ export namespace Prisma {
   export type DoubtSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    answer?: boolean
     askedById?: boolean
     answeredById?: boolean
     askedAt?: boolean
+    answeredAt?: boolean
     askedSpaceId?: boolean
     askedBy?: boolean | UserDefaultArgs<ExtArgs>
     answeredBy?: boolean | Doubt$answeredByArgs<ExtArgs>
@@ -6181,13 +6201,15 @@ export namespace Prisma {
   export type DoubtSelectScalar = {
     id?: boolean
     title?: boolean
+    answer?: boolean
     askedById?: boolean
     answeredById?: boolean
     askedAt?: boolean
+    answeredAt?: boolean
     askedSpaceId?: boolean
   }
 
-  export type DoubtOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "askedById" | "answeredById" | "askedAt" | "askedSpaceId", ExtArgs["result"]["doubt"]>
+  export type DoubtOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "answer" | "askedById" | "answeredById" | "askedAt" | "answeredAt" | "askedSpaceId", ExtArgs["result"]["doubt"]>
   export type DoubtInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     askedBy?: boolean | UserDefaultArgs<ExtArgs>
     answeredBy?: boolean | Doubt$answeredByArgs<ExtArgs>
@@ -6214,9 +6236,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
+      answer: string | null
       askedById: string
       answeredById: string
       askedAt: Date
+      answeredAt: Date
       askedSpaceId: number
     }, ExtArgs["result"]["doubt"]>
     composites: {}
@@ -6646,9 +6670,11 @@ export namespace Prisma {
   interface DoubtFieldRefs {
     readonly id: FieldRef<"Doubt", 'String'>
     readonly title: FieldRef<"Doubt", 'String'>
+    readonly answer: FieldRef<"Doubt", 'String'>
     readonly askedById: FieldRef<"Doubt", 'String'>
     readonly answeredById: FieldRef<"Doubt", 'String'>
     readonly askedAt: FieldRef<"Doubt", 'DateTime'>
+    readonly answeredAt: FieldRef<"Doubt", 'DateTime'>
     readonly askedSpaceId: FieldRef<"Doubt", 'Int'>
   }
     
@@ -7145,9 +7171,11 @@ export namespace Prisma {
   export const DoubtScalarFieldEnum: {
     id: 'id',
     title: 'title',
+    answer: 'answer',
     askedById: 'askedById',
     answeredById: 'answeredById',
     askedAt: 'askedAt',
+    answeredAt: 'answeredAt',
     askedSpaceId: 'askedSpaceId'
   };
 
@@ -7528,9 +7556,11 @@ export namespace Prisma {
     NOT?: DoubtWhereInput | DoubtWhereInput[]
     id?: StringFilter<"Doubt"> | string
     title?: StringFilter<"Doubt"> | string
+    answer?: StringNullableFilter<"Doubt"> | string | null
     askedById?: StringFilter<"Doubt"> | string
     answeredById?: StringFilter<"Doubt"> | string
     askedAt?: DateTimeFilter<"Doubt"> | Date | string
+    answeredAt?: DateTimeFilter<"Doubt"> | Date | string
     askedSpaceId?: IntFilter<"Doubt"> | number
     askedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     answeredBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -7540,9 +7570,11 @@ export namespace Prisma {
   export type DoubtOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
+    answer?: SortOrderInput | SortOrder
     askedById?: SortOrder
     answeredById?: SortOrder
     askedAt?: SortOrder
+    answeredAt?: SortOrder
     askedSpaceId?: SortOrder
     askedBy?: UserOrderByWithRelationInput
     answeredBy?: UserOrderByWithRelationInput
@@ -7555,9 +7587,11 @@ export namespace Prisma {
     OR?: DoubtWhereInput[]
     NOT?: DoubtWhereInput | DoubtWhereInput[]
     title?: StringFilter<"Doubt"> | string
+    answer?: StringNullableFilter<"Doubt"> | string | null
     askedById?: StringFilter<"Doubt"> | string
     answeredById?: StringFilter<"Doubt"> | string
     askedAt?: DateTimeFilter<"Doubt"> | Date | string
+    answeredAt?: DateTimeFilter<"Doubt"> | Date | string
     askedSpaceId?: IntFilter<"Doubt"> | number
     askedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     answeredBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -7567,9 +7601,11 @@ export namespace Prisma {
   export type DoubtOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
+    answer?: SortOrderInput | SortOrder
     askedById?: SortOrder
     answeredById?: SortOrder
     askedAt?: SortOrder
+    answeredAt?: SortOrder
     askedSpaceId?: SortOrder
     _count?: DoubtCountOrderByAggregateInput
     _avg?: DoubtAvgOrderByAggregateInput
@@ -7584,9 +7620,11 @@ export namespace Prisma {
     NOT?: DoubtScalarWhereWithAggregatesInput | DoubtScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Doubt"> | string
     title?: StringWithAggregatesFilter<"Doubt"> | string
+    answer?: StringNullableWithAggregatesFilter<"Doubt"> | string | null
     askedById?: StringWithAggregatesFilter<"Doubt"> | string
     answeredById?: StringWithAggregatesFilter<"Doubt"> | string
     askedAt?: DateTimeWithAggregatesFilter<"Doubt"> | Date | string
+    answeredAt?: DateTimeWithAggregatesFilter<"Doubt"> | Date | string
     askedSpaceId?: IntWithAggregatesFilter<"Doubt"> | number
   }
 
@@ -7845,7 +7883,9 @@ export namespace Prisma {
   export type DoubtCreateInput = {
     id?: string
     title: string
+    answer?: string | null
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedBy: UserCreateNestedOneWithoutDoubtAskedInput
     answeredBy?: UserCreateNestedOneWithoutDoubtAnsweredInput
     askedSpace: SpaceCreateNestedOneWithoutDoubtInput
@@ -7854,16 +7894,20 @@ export namespace Prisma {
   export type DoubtUncheckedCreateInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
   export type DoubtUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedBy?: UserUpdateOneRequiredWithoutDoubtAskedNestedInput
     answeredBy?: UserUpdateOneWithoutDoubtAnsweredNestedInput
     askedSpace?: SpaceUpdateOneRequiredWithoutDoubtNestedInput
@@ -7872,33 +7916,41 @@ export namespace Prisma {
   export type DoubtUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DoubtCreateManyInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
   export type DoubtUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DoubtUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -8243,9 +8295,11 @@ export namespace Prisma {
   export type DoubtCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    answer?: SortOrder
     askedById?: SortOrder
     answeredById?: SortOrder
     askedAt?: SortOrder
+    answeredAt?: SortOrder
     askedSpaceId?: SortOrder
   }
 
@@ -8256,18 +8310,22 @@ export namespace Prisma {
   export type DoubtMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    answer?: SortOrder
     askedById?: SortOrder
     answeredById?: SortOrder
     askedAt?: SortOrder
+    answeredAt?: SortOrder
     askedSpaceId?: SortOrder
   }
 
   export type DoubtMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    answer?: SortOrder
     askedById?: SortOrder
     answeredById?: SortOrder
     askedAt?: SortOrder
+    answeredAt?: SortOrder
     askedSpaceId?: SortOrder
   }
 
@@ -9000,7 +9058,9 @@ export namespace Prisma {
   export type DoubtCreateWithoutAskedByInput = {
     id?: string
     title: string
+    answer?: string | null
     askedAt?: Date | string
+    answeredAt?: Date | string
     answeredBy?: UserCreateNestedOneWithoutDoubtAnsweredInput
     askedSpace: SpaceCreateNestedOneWithoutDoubtInput
   }
@@ -9008,8 +9068,10 @@ export namespace Prisma {
   export type DoubtUncheckedCreateWithoutAskedByInput = {
     id?: string
     title: string
+    answer?: string | null
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
@@ -9026,7 +9088,9 @@ export namespace Prisma {
   export type DoubtCreateWithoutAnsweredByInput = {
     id?: string
     title: string
+    answer?: string | null
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedBy: UserCreateNestedOneWithoutDoubtAskedInput
     askedSpace: SpaceCreateNestedOneWithoutDoubtInput
   }
@@ -9034,8 +9098,10 @@ export namespace Prisma {
   export type DoubtUncheckedCreateWithoutAnsweredByInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
@@ -9153,9 +9219,11 @@ export namespace Prisma {
     NOT?: DoubtScalarWhereInput | DoubtScalarWhereInput[]
     id?: StringFilter<"Doubt"> | string
     title?: StringFilter<"Doubt"> | string
+    answer?: StringNullableFilter<"Doubt"> | string | null
     askedById?: StringFilter<"Doubt"> | string
     answeredById?: StringFilter<"Doubt"> | string
     askedAt?: DateTimeFilter<"Doubt"> | Date | string
+    answeredAt?: DateTimeFilter<"Doubt"> | Date | string
     askedSpaceId?: IntFilter<"Doubt"> | number
   }
 
@@ -9254,7 +9322,9 @@ export namespace Prisma {
   export type DoubtCreateWithoutAskedSpaceInput = {
     id?: string
     title: string
+    answer?: string | null
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedBy: UserCreateNestedOneWithoutDoubtAskedInput
     answeredBy?: UserCreateNestedOneWithoutDoubtAnsweredInput
   }
@@ -9262,9 +9332,11 @@ export namespace Prisma {
   export type DoubtUncheckedCreateWithoutAskedSpaceInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
   }
 
   export type DoubtCreateOrConnectWithoutAskedSpaceInput = {
@@ -9815,16 +9887,20 @@ export namespace Prisma {
   export type DoubtCreateManyAskedByInput = {
     id?: string
     title: string
+    answer?: string | null
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
   export type DoubtCreateManyAnsweredByInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
     askedSpaceId: number
   }
 
@@ -9901,7 +9977,9 @@ export namespace Prisma {
   export type DoubtUpdateWithoutAskedByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     answeredBy?: UserUpdateOneWithoutDoubtAnsweredNestedInput
     askedSpace?: SpaceUpdateOneRequiredWithoutDoubtNestedInput
   }
@@ -9909,23 +9987,29 @@ export namespace Prisma {
   export type DoubtUncheckedUpdateWithoutAskedByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DoubtUncheckedUpdateManyWithoutAskedByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DoubtUpdateWithoutAnsweredByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedBy?: UserUpdateOneRequiredWithoutDoubtAskedNestedInput
     askedSpace?: SpaceUpdateOneRequiredWithoutDoubtNestedInput
   }
@@ -9933,16 +10017,20 @@ export namespace Prisma {
   export type DoubtUncheckedUpdateWithoutAnsweredByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DoubtUncheckedUpdateManyWithoutAnsweredByInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedSpaceId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -9963,9 +10051,11 @@ export namespace Prisma {
   export type DoubtCreateManyAskedSpaceInput = {
     id?: string
     title: string
+    answer?: string | null
     askedById: string
     answeredById: string
     askedAt?: Date | string
+    answeredAt?: Date | string
   }
 
   export type ChatUpdateWithoutSpaceInput = {
@@ -10012,7 +10102,9 @@ export namespace Prisma {
   export type DoubtUpdateWithoutAskedSpaceInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     askedBy?: UserUpdateOneRequiredWithoutDoubtAskedNestedInput
     answeredBy?: UserUpdateOneWithoutDoubtAnsweredNestedInput
   }
@@ -10020,17 +10112,21 @@ export namespace Prisma {
   export type DoubtUncheckedUpdateWithoutAskedSpaceInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DoubtUncheckedUpdateManyWithoutAskedSpaceInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
+    answer?: NullableStringFieldUpdateOperationsInput | string | null
     askedById?: StringFieldUpdateOperationsInput | string
     answeredById?: StringFieldUpdateOperationsInput | string
     askedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    answeredAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
