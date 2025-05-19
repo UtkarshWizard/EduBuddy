@@ -20,3 +20,7 @@ export const SpaceSchema = z.object({
 export const DoubtSchema = z.object({
     title: z.string().min(6)
 })
+
+export const AnswerSchema = z.object({
+    answer: z.string().min(1)
+})

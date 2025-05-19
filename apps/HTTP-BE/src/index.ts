@@ -2,7 +2,7 @@ import express from "express";
 import { prismaClient } from "@repo/db/client";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import jwt from "jsonwebtoken";
-import { SignInSchema, SignUpSchema, SpaceSchema } from "@repo/common/types";
+import { AnswerSchema, DoubtSchema, SignInSchema, SignUpSchema, SpaceSchema } from "@repo/common/types";
 import bcrypt from "bcrypt";
 import { middleware } from "./middleware";
 
@@ -135,7 +135,7 @@ app.post('/createSpace', middleware , async (req , res) => {
     }
 })
 
-app.post('/space/:id', middleware , async (req , res) => {
+app.post('/joinSpace/:id', middleware , async (req , res) => {
     const spaceId = Number(req.params.id);
     const userId = req.userId;
 
@@ -163,6 +163,186 @@ app.post('/space/:id', middleware , async (req , res) => {
             message : "Failed to join space"
         })
     }
+})
+
+app.post('/space/:id/createDoubt' , middleware , async (req , res) => {
+    const parsedData = DoubtSchema.safeParse(req.body);
+
+    if (!parsedData.success) {
+        res.status(403).json({
+            message : "Invalid Inputs"
+        });
+        return
+    }
+
+    const askedById = req.userId;
+    const askedSpaceId = Number(req.params.id);
+
+    if (!askedSpaceId || !askedById) {
+        res.status(403).json({
+            message : "Not authorized"
+        });
+        return
+    }
+
+    try {
+        const doubt = await prismaClient.doubt.create({
+            data: {
+                title: parsedData.data.title,
+                askedById,
+                askedSpaceId,
+            }
+        })
+        res.json({
+            doubt,
+            message: "Doubt created Succesfully"
+        })
+     } catch (e) {
+        res.status(403).json({
+            message: "Doubt creation failed"
+        })
+     }
+})
+
+app.post('/answer/doubt/:id', middleware , async (req , res) => {
+    const parsedData = AnswerSchema.safeParse(req.body);
+
+    if (!parsedData.success) {
+        res.status(403).json({
+            message: "Invalid Inputs"
+        });
+        return
+    }
+
+    const doubtId = req.params.id;
+    const answeredById = req.userId;
+
+    if (!answeredById || !doubtId) {
+        res.status(403).json({
+            message: "Invalid Doubt Id"
+        })
+        return
+    }
+
+    try {
+        const doubt = await prismaClient.doubt.findFirst({
+            where: {
+                id: doubtId
+            }
+        });
+
+        if (!doubt) {
+            res.status(403).json({
+                message: "Doubt does not exist"
+            });
+            return
+        }
+
+        const answeredDoubt = await prismaClient.doubt.update({
+            where: {
+                id: doubt.id
+            } , 
+            data: {
+                answer : parsedData.data.answer,
+                answeredById,
+            }
+        })
+        res.json({
+            message: "Anwered Succesfully",
+            answeredDoubt
+        })
+    } catch (e) {
+        res.status(403).json({
+            message: "Failed to answer doubt"
+        })
+    }
+})
+
+app.get('/spaces' , middleware , async ( req , res ) => {
+    try {
+        const spaces = await prismaClient.space.findMany({
+            include: {
+                admin: true,
+                participants: {
+                    include: { user: true}
+                },
+                doubt: true,
+                chat: true
+            }
+        })
+        res.json({
+            spaces
+        })
+    } catch (e) {
+        res.status(403).json({
+            message :"Failed to get rooms"
+        })
+    }
+})
+
+app.get('/space/:id' , middleware , async (req, res) =>{
+    const id = Number(req.params.id);
+
+    const space = await prismaClient.space.findUnique({
+        where: {
+            id
+        }
+    })
+
+    if (!space) {
+        res.status(404).json({
+            message: "Space does not exist"
+        })
+        return
+    }
+
+    res.json({
+        space
+    })
+})
+
+app.get('/space/:id/doubts' , middleware , async (req , res) => {
+    const id = Number(req.params.id);
+
+    const doubts = await prismaClient.doubt.findMany({
+        where: {
+            askedSpaceId: id
+        }
+    })
+
+    if (!doubts) {
+        res.status(404).json({
+            message: "No Doubt exist"
+        })
+        return
+    }
+
+    res.json({
+        doubts
+    })
+})
+
+app.get('/doubt/:id/answer', middleware , async (req ,res) => {
+    const id = req.params.id;
+
+    const answer = await prismaClient.doubt.findFirst({
+        where: {
+            id
+        } , 
+        select: {
+            answer : true
+        }
+    })
+
+    if (!answer) {
+        res.status(404).json({
+            message : "Not Anwered"
+        })
+    }
+
+    res.json({
+        answer
+    })
 })
 
 app.listen(3001);
