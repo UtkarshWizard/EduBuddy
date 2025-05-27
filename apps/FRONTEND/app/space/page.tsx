@@ -1,8 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { HelpCircle, MessageCircle, Users } from "lucide-react";
+import { Clock, HelpCircle, MessageCircle, Send, Users } from "lucide-react";
 
 export default function SpacePage () {
     return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
@@ -224,12 +226,80 @@ export default function SpacePage () {
                                         <p className="text-gray-200 mt-4 text-xl">Hey there welcome to the space</p>
                                     </div>
                                 </div>
-
                             </CardContent>
                         </Card>
+                        <div className="h-20" />
+                    </div>
+                    <div className="fixed bottom-0 left-0 right-0 border-t border-white/10 bg-black/40 backdrop-blur-sm px-16 py-4">
+                        <div className="container mx-auto">
+                            <div className="flex gap-3">
+                                <Input
+                                    placeholder="Send a message to the space..."
+                                    className="flex-1 border-white/20 bg-white/10 text-white placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-500"
+                                />
+                                    <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+                                    <Send className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </TabsContent>
+
+                <TabsContent value="Doubts">
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-2xl font-semibold text-gray-200">Doubts</h2>
+                            <Button className="bg-purple-600 hover:bg-purple-700">
+                                <HelpCircle className="h-4 w-4 mr-2" />
+                                Ask Doubt
+                            </Button>
+                        </div>
+                        <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                            {/* map doubts here */}
+                            <Card className="bg-white/5 border-white/10">
+                                <CardHeader className="pb-3">
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                            <CardTitle className="text-lg text-white mb-2">
+                                                How was tesla invented ?
+                                            </CardTitle>
+                                        </div>
+                                        <div className="flex flex-col items-end gap-1 ml-4">
+                                            <span className="text-xs text-gray-300 flex items-center gap-1">
+                                                <Clock className="h-3 w-3" />
+                                                5/2/2025
+                                            </span>
+                                        </div>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                     <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <Avatar className="h-6 w-6">
+                                                <AvatarImage />
+                                                <AvatarFallback className="bg-purple-600 text-white text-xs">
+                                                    A
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <span className="text-sm text-gray-300">Utkarsh</span>
+                                        </div>
+                                        <div className="flex items-center gap-4">
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white"
+                                            >
+                                                Answer
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
                 </TabsContent>
             </Tabs>
          </div>
+
     </div>
 }
