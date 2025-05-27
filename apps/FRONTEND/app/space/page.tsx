@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HelpCircle, MessageCircle, Users } from "lucide-react";
 
@@ -199,6 +200,33 @@ export default function SpacePage () {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </TabsContent>
+
+                <TabsContent value="Chat">
+                    <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                        <h2 className="text-xl font-semibold text-gray-200 mb-4">Recent Messages</h2>
+                        {/* Map chats here */}
+                        <Card className="bg-white/5 border-white/10">
+                            <CardContent className="p-4">
+                                <div className="flex items-start gap-3">
+                                    <Avatar className="h-8 w-8">
+                                        <AvatarImage />
+                                        <AvatarFallback className="bg-purple-600 text-white text-xs">
+                                            A
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span className="font-medium text-white">Utkarsh</span>
+                                            <span className="text-xs text-gray-300">5/2/2025</span>
+                                        </div>
+                                        <p className="text-gray-200 mt-4 text-xl">Hey there welcome to the space</p>
+                                    </div>
+                                </div>
+
+                            </CardContent>
+                        </Card>
                     </div>
                 </TabsContent>
             </Tabs>
