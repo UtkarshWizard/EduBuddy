@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import { Users } from "lucide-react";
+import { Tabs } from "@/components/ui/tabs";
+import { TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { HelpCircle, MessageCircle, Users } from "lucide-react";
 
 export default function SpacePage () {
     return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
@@ -23,6 +25,25 @@ export default function SpacePage () {
                     </Badge>
                 </div>
             </div>
+         </div>
+
+         <div className="container mx-auto px-4 py-6">
+            <Tabs defaultValue="Members" className="w-full px-16" >
+                <TabsList className="grid grid-cols-3 w-full bg-white/10 mb-6">
+                    <TabsTrigger value="Members" className="data-[state=active]:bg-purple-600 flex items-center justify-center p-4 rounded-l-md">
+                        <Users className="h-4 w-4 mr-2" />
+                        Members
+                    </TabsTrigger>
+                    <TabsTrigger value="Chat" className="data-[state=active]:bg-purple-600 flex items-center justify-center p-4">
+                        <MessageCircle className="h-4 w-4 mr-2" />
+                        Chat
+                    </TabsTrigger>
+                    <TabsTrigger value="Doubts" className="data-[state=active]:bg-purple-600 flex items-center justify-center p-4 rounded-r-md">
+                        <HelpCircle className="h-4 w-4 mr-2" />
+                        Doubts
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
          </div>
     </div>
 }
