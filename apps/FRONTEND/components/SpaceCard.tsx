@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
@@ -18,11 +19,13 @@ export default function SpaceCard() {
                 <span className="text-sm text-muted-foreground">
                 Created At - xyz
                 </span>
-                <Button
-                    className="bg-indigo-600 hover:bg-indigo-700"
-                >
-                 Join
-                </Button>
+                <Link href="/space">
+                    <Button
+                        className="bg-indigo-600 hover:bg-indigo-700"
+                    >
+                        Join
+                    </Button>
+                </Link>
             </CardFooter>
         </Card>
     </div>

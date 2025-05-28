@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock, HelpCircle, MessageCircle, Send, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function SpacePage () {
     return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
@@ -20,6 +21,9 @@ export default function SpacePage () {
                             <p className="text-sm text-gray-300">Connect with fellow space members</p>
                         </div>
                     </div>
+                    <Link href="/" className="text-gray-300 text-lg font-light">
+                        Home
+                    </Link>
                     <Badge variant="secondary" className="bg-purple-600/20 text-purple-200 mx-16 text-base hover:bg-purple-300/20" >
                         <div
                             className="h-4 w-4 mr-2 rounded-full bg-green-500"
@@ -33,15 +37,15 @@ export default function SpacePage () {
          <div className="container mx-auto px-4 py-6">
             <Tabs defaultValue="Members" className="w-full px-16" >
                 <TabsList className="grid grid-cols-3 w-full h-full bg-white/10 mb-8 text-gray-400">
-                    <TabsTrigger value="Members" className="data-[state=active]:bg-purple-600 text-xl py-4 rounded-l-md">
+                    <TabsTrigger value="Members" className="data-[state=active]:bg-purple-600 text-lg py-2 rounded-l-md">
                         <Users className="h-6 w-6 mr-2" />
                         Members
                     </TabsTrigger>
-                    <TabsTrigger value="Chat" className="data-[state=active]:bg-purple-600 py-4 text-xl ">
+                    <TabsTrigger value="Chat" className="data-[state=active]:bg-purple-600 py-2 text-lg ">
                         <MessageCircle className="h-6 w-6 mr-2" />
                         Chat
                     </TabsTrigger>
-                    <TabsTrigger value="Doubts" className="data-[state=active]:bg-purple-600 text-xl py-4 rounded-r-md">
+                    <TabsTrigger value="Doubts" className="data-[state=active]:bg-purple-600 text-lg py-2 rounded-r-md">
                         <HelpCircle className="h-6 w-6 mr-2" />
                         Doubts
                     </TabsTrigger>
@@ -225,7 +229,7 @@ export default function SpacePage () {
                                         </div>
                                         <p className="text-gray-200 mt-4 text-xl">Hey there welcome to the space</p>
                                     </div>
-                                </div>
+                                </div>  
                             </CardContent>
                         </Card>
                         <div className="h-20" />
