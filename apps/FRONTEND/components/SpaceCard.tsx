@@ -3,21 +3,41 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 
-export default function SpaceCard() {
+type props = {
+    space: {
+        id: number;
+        name: string;
+        subject: string;
+        isLive: boolean;
+        createdAt: Date;
+        adminId: string;
+        admin: {
+            id: string;
+            name: string;
+            email?: string;
+        };
+        participants: {
+            id: string;
+            name: string;
+        }[];
+    }
+}
+
+export default function SpaceCard({space} : props) {
     return <div>
         <Card className="h-full transition-all duration-200 hover:shadow-lg">
             <CardContent className="pt-6">
                 <Badge className="mb-4" variant="outline">
-                    IIT-JEE
+                    {space.subject}
                 </Badge>
-                <h3 className="text-xl font-semibold mb-4">Space Title</h3>
+                <h3 className="text-xl font-semibold mb-4">{space.name}</h3>
                 <div className="text-gray-600">
-                    32 Students
+                    {space.participants.length} Participants
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">
-                Created At - xyz
+                Created At - {new Date(space.createdAt).toLocaleString()}
                 </span>
                 <Link href="/space">
                     <Button

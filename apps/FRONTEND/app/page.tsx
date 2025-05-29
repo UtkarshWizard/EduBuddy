@@ -1,6 +1,6 @@
 import AuthGuard from "@/components/AuthGuard";
 import Navbar from "@/components/Navbar";
-import SpaceCard from "@/components/SpaceCard";
+import SpaceList from "@/components/SpaceList";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -35,9 +35,7 @@ export default function Home() {
             Or <br />
             Join One
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-            <SpaceCard />
-          </div>
+            <SpaceList />
         </main>
       </div>
     </AuthGuard>
