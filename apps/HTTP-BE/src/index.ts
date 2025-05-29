@@ -50,7 +50,14 @@ app.post('/signup' , async (req , res) => {
         })
 
         try {
-            const token = jwt.sign({ userId: user.id }, JWT_SECRET);
+            const token = jwt.sign({ userId: user.id }, JWT_SECRET , {expiresIn: '1d'});
+
+            res.cookie('token' , token , {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: "none",
+                maxAge: 24 * 60 * 60 * 1000
+            })
 
             res.json({
                 message: "Account added successfully",
@@ -97,7 +104,14 @@ app.post('/signin' , async (req , res) => {
 
         const token = jwt.sign({
             userId: user.id
-        } , JWT_SECRET);
+        } , JWT_SECRET , {expiresIn: '1d'});
+
+        res.cookie('token' , token , {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: "none",
+            maxAge: 24 * 60 * 60 * 1000
+        })
 
         res.json({
             token
@@ -110,6 +124,10 @@ app.post('/signin' , async (req , res) => {
     }
 
 })
+
+app.get('/', middleware, (req, res) => {
+    res.json({ message: `Welcome User ${req.userId}` });
+});
 
 app.post('/createSpace', middleware , async (req , res) => {
     const parsedData = SpaceSchema.safeParse(req.body);
