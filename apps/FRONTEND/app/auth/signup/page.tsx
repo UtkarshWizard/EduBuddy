@@ -31,7 +31,7 @@ export default function SignUp() {
     // await new Promise((resolve) => setTimeout(resolve, 2000));
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/signup` , formData);
+      const response = await axios.post(`${BACKEND_URL}/signup` , formData , {withCredentials: true});
 
       if (response) {
         router.push("/")

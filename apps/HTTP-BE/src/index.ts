@@ -5,16 +5,20 @@ import jwt from "jsonwebtoken";
 import { AnswerSchema, DoubtSchema, SignInSchema, SignUpSchema, SpaceSchema } from "@repo/common/types";
 import bcrypt from "bcrypt";
 import { middleware } from "./middleware";
-import cors from "cors"
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json());
 
+app.use(cookieParser());
 
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
 }));
+
+
 
 app.post('/signup' , async (req , res) => {
     const parsedData = SignUpSchema.safeParse(req.body);
@@ -55,7 +59,7 @@ app.post('/signup' , async (req , res) => {
             res.cookie('token' , token , {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: "none",
+                sameSite: "lax",
                 maxAge: 24 * 60 * 60 * 1000
             })
 
@@ -109,7 +113,7 @@ app.post('/signin' , async (req , res) => {
         res.cookie('token' , token , {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: "none",
+            sameSite: "lax",
             maxAge: 24 * 60 * 60 * 1000
         })
 
@@ -127,6 +131,16 @@ app.post('/signin' , async (req , res) => {
 
 app.get('/', middleware, (req, res) => {
     res.json({ message: `Welcome User ${req.userId}` });
+});
+
+app.post('/logout', (req, res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'none'
+    });
+
+    res.json({ message: 'Logged out successfully' });
 });
 
 app.post('/createSpace', middleware , async (req , res) => {
