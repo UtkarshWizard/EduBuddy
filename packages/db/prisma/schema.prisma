@@ -31,7 +31,8 @@ model Space {
   id              Int             @id @default(autoincrement())
   name            String          @unique
   subject         String
-  isLive          Boolean         @default(true)
+  isPublic        Boolean         @default(true)
+  password        String?
   createdAt       DateTime        @default(now())
   adminId         String
   admin           User            @relation(fields: [adminId] , references: [id])

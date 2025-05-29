@@ -2572,7 +2572,8 @@ export namespace Prisma {
     id: number | null
     name: string | null
     subject: string | null
-    isLive: boolean | null
+    isPublic: boolean | null
+    password: string | null
     createdAt: Date | null
     adminId: string | null
   }
@@ -2581,7 +2582,8 @@ export namespace Prisma {
     id: number | null
     name: string | null
     subject: string | null
-    isLive: boolean | null
+    isPublic: boolean | null
+    password: string | null
     createdAt: Date | null
     adminId: string | null
   }
@@ -2590,7 +2592,8 @@ export namespace Prisma {
     id: number
     name: number
     subject: number
-    isLive: number
+    isPublic: number
+    password: number
     createdAt: number
     adminId: number
     _all: number
@@ -2609,7 +2612,8 @@ export namespace Prisma {
     id?: true
     name?: true
     subject?: true
-    isLive?: true
+    isPublic?: true
+    password?: true
     createdAt?: true
     adminId?: true
   }
@@ -2618,7 +2622,8 @@ export namespace Prisma {
     id?: true
     name?: true
     subject?: true
-    isLive?: true
+    isPublic?: true
+    password?: true
     createdAt?: true
     adminId?: true
   }
@@ -2627,7 +2632,8 @@ export namespace Prisma {
     id?: true
     name?: true
     subject?: true
-    isLive?: true
+    isPublic?: true
+    password?: true
     createdAt?: true
     adminId?: true
     _all?: true
@@ -2723,7 +2729,8 @@ export namespace Prisma {
     id: number
     name: string
     subject: string
-    isLive: boolean
+    isPublic: boolean
+    password: string | null
     createdAt: Date
     adminId: string
     _count: SpaceCountAggregateOutputType | null
@@ -2751,7 +2758,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     subject?: boolean
-    isLive?: boolean
+    isPublic?: boolean
+    password?: boolean
     createdAt?: boolean
     adminId?: boolean
     admin?: boolean | UserDefaultArgs<ExtArgs>
@@ -2765,7 +2773,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     subject?: boolean
-    isLive?: boolean
+    isPublic?: boolean
+    password?: boolean
     createdAt?: boolean
     adminId?: boolean
     admin?: boolean | UserDefaultArgs<ExtArgs>
@@ -2775,7 +2784,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     subject?: boolean
-    isLive?: boolean
+    isPublic?: boolean
+    password?: boolean
     createdAt?: boolean
     adminId?: boolean
     admin?: boolean | UserDefaultArgs<ExtArgs>
@@ -2785,12 +2795,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     subject?: boolean
-    isLive?: boolean
+    isPublic?: boolean
+    password?: boolean
     createdAt?: boolean
     adminId?: boolean
   }
 
-  export type SpaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "subject" | "isLive" | "createdAt" | "adminId", ExtArgs["result"]["space"]>
+  export type SpaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "subject" | "isPublic" | "password" | "createdAt" | "adminId", ExtArgs["result"]["space"]>
   export type SpaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | UserDefaultArgs<ExtArgs>
     chat?: boolean | Space$chatArgs<ExtArgs>
@@ -2817,7 +2828,8 @@ export namespace Prisma {
       id: number
       name: string
       subject: string
-      isLive: boolean
+      isPublic: boolean
+      password: string | null
       createdAt: Date
       adminId: string
     }, ExtArgs["result"]["space"]>
@@ -3250,7 +3262,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Space", 'Int'>
     readonly name: FieldRef<"Space", 'String'>
     readonly subject: FieldRef<"Space", 'String'>
-    readonly isLive: FieldRef<"Space", 'Boolean'>
+    readonly isPublic: FieldRef<"Space", 'Boolean'>
+    readonly password: FieldRef<"Space", 'String'>
     readonly createdAt: FieldRef<"Space", 'DateTime'>
     readonly adminId: FieldRef<"Space", 'String'>
   }
@@ -7138,7 +7151,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     subject: 'subject',
-    isLive: 'isLive',
+    isPublic: 'isPublic',
+    password: 'password',
     createdAt: 'createdAt',
     adminId: 'adminId'
   };
@@ -7365,7 +7379,8 @@ export namespace Prisma {
     id?: IntFilter<"Space"> | number
     name?: StringFilter<"Space"> | string
     subject?: StringFilter<"Space"> | string
-    isLive?: BoolFilter<"Space"> | boolean
+    isPublic?: BoolFilter<"Space"> | boolean
+    password?: StringNullableFilter<"Space"> | string | null
     createdAt?: DateTimeFilter<"Space"> | Date | string
     adminId?: StringFilter<"Space"> | string
     admin?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -7378,7 +7393,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     subject?: SortOrder
-    isLive?: SortOrder
+    isPublic?: SortOrder
+    password?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     adminId?: SortOrder
     admin?: UserOrderByWithRelationInput
@@ -7394,7 +7410,8 @@ export namespace Prisma {
     OR?: SpaceWhereInput[]
     NOT?: SpaceWhereInput | SpaceWhereInput[]
     subject?: StringFilter<"Space"> | string
-    isLive?: BoolFilter<"Space"> | boolean
+    isPublic?: BoolFilter<"Space"> | boolean
+    password?: StringNullableFilter<"Space"> | string | null
     createdAt?: DateTimeFilter<"Space"> | Date | string
     adminId?: StringFilter<"Space"> | string
     admin?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -7407,7 +7424,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     subject?: SortOrder
-    isLive?: SortOrder
+    isPublic?: SortOrder
+    password?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     adminId?: SortOrder
     _count?: SpaceCountOrderByAggregateInput
@@ -7424,7 +7442,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Space"> | number
     name?: StringWithAggregatesFilter<"Space"> | string
     subject?: StringWithAggregatesFilter<"Space"> | string
-    isLive?: BoolWithAggregatesFilter<"Space"> | boolean
+    isPublic?: BoolWithAggregatesFilter<"Space"> | boolean
+    password?: StringNullableWithAggregatesFilter<"Space"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Space"> | Date | string
     adminId?: StringWithAggregatesFilter<"Space"> | string
   }
@@ -7707,7 +7726,8 @@ export namespace Prisma {
   export type SpaceCreateInput = {
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     admin: UserCreateNestedOneWithoutSpaceCreatedInput
     chat?: ChatCreateNestedManyWithoutSpaceInput
@@ -7719,7 +7739,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     adminId: string
     chat?: ChatUncheckedCreateNestedManyWithoutSpaceInput
@@ -7730,7 +7751,8 @@ export namespace Prisma {
   export type SpaceUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: UserUpdateOneRequiredWithoutSpaceCreatedNestedInput
     chat?: ChatUpdateManyWithoutSpaceNestedInput
@@ -7742,7 +7764,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adminId?: StringFieldUpdateOperationsInput | string
     chat?: ChatUncheckedUpdateManyWithoutSpaceNestedInput
@@ -7754,7 +7777,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     adminId: string
   }
@@ -7762,7 +7786,8 @@ export namespace Prisma {
   export type SpaceUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7770,7 +7795,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adminId?: StringFieldUpdateOperationsInput | string
   }
@@ -8125,7 +8151,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     subject?: SortOrder
-    isLive?: SortOrder
+    isPublic?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     adminId?: SortOrder
   }
@@ -8138,7 +8165,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     subject?: SortOrder
-    isLive?: SortOrder
+    isPublic?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     adminId?: SortOrder
   }
@@ -8147,7 +8175,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     subject?: SortOrder
-    isLive?: SortOrder
+    isPublic?: SortOrder
+    password?: SortOrder
     createdAt?: SortOrder
     adminId?: SortOrder
   }
@@ -9034,7 +9063,8 @@ export namespace Prisma {
   export type SpaceCreateWithoutAdminInput = {
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     chat?: ChatCreateNestedManyWithoutSpaceInput
     participants?: SpaceParticipantCreateNestedManyWithoutSpaceInput
@@ -9045,7 +9075,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     chat?: ChatUncheckedCreateNestedManyWithoutSpaceInput
     participants?: SpaceParticipantUncheckedCreateNestedManyWithoutSpaceInput
@@ -9192,7 +9223,8 @@ export namespace Prisma {
     id?: IntFilter<"Space"> | number
     name?: StringFilter<"Space"> | string
     subject?: StringFilter<"Space"> | string
-    isLive?: BoolFilter<"Space"> | boolean
+    isPublic?: BoolFilter<"Space"> | boolean
+    password?: StringNullableFilter<"Space"> | string | null
     createdAt?: DateTimeFilter<"Space"> | Date | string
     adminId?: StringFilter<"Space"> | string
   }
@@ -9518,7 +9550,8 @@ export namespace Prisma {
   export type SpaceCreateWithoutParticipantsInput = {
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     admin: UserCreateNestedOneWithoutSpaceCreatedInput
     chat?: ChatCreateNestedManyWithoutSpaceInput
@@ -9529,7 +9562,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     adminId: string
     chat?: ChatUncheckedCreateNestedManyWithoutSpaceInput
@@ -9590,7 +9624,8 @@ export namespace Prisma {
   export type SpaceUpdateWithoutParticipantsInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: UserUpdateOneRequiredWithoutSpaceCreatedNestedInput
     chat?: ChatUpdateManyWithoutSpaceNestedInput
@@ -9601,7 +9636,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adminId?: StringFieldUpdateOperationsInput | string
     chat?: ChatUncheckedUpdateManyWithoutSpaceNestedInput
@@ -9611,7 +9647,8 @@ export namespace Prisma {
   export type SpaceCreateWithoutChatInput = {
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     admin: UserCreateNestedOneWithoutSpaceCreatedInput
     participants?: SpaceParticipantCreateNestedManyWithoutSpaceInput
@@ -9622,7 +9659,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     adminId: string
     participants?: SpaceParticipantUncheckedCreateNestedManyWithoutSpaceInput
@@ -9677,7 +9715,8 @@ export namespace Prisma {
   export type SpaceUpdateWithoutChatInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: UserUpdateOneRequiredWithoutSpaceCreatedNestedInput
     participants?: SpaceParticipantUpdateManyWithoutSpaceNestedInput
@@ -9688,7 +9727,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adminId?: StringFieldUpdateOperationsInput | string
     participants?: SpaceParticipantUncheckedUpdateManyWithoutSpaceNestedInput
@@ -9791,7 +9831,8 @@ export namespace Prisma {
   export type SpaceCreateWithoutDoubtInput = {
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     admin: UserCreateNestedOneWithoutSpaceCreatedInput
     chat?: ChatCreateNestedManyWithoutSpaceInput
@@ -9802,7 +9843,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
     adminId: string
     chat?: ChatUncheckedCreateNestedManyWithoutSpaceInput
@@ -9898,7 +9940,8 @@ export namespace Prisma {
   export type SpaceUpdateWithoutDoubtInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: UserUpdateOneRequiredWithoutSpaceCreatedNestedInput
     chat?: ChatUpdateManyWithoutSpaceNestedInput
@@ -9909,7 +9952,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adminId?: StringFieldUpdateOperationsInput | string
     chat?: ChatUncheckedUpdateManyWithoutSpaceNestedInput
@@ -9920,7 +9964,8 @@ export namespace Prisma {
     id?: number
     name: string
     subject: string
-    isLive?: boolean
+    isPublic?: boolean
+    password?: string | null
     createdAt?: Date | string
   }
 
@@ -9961,7 +10006,8 @@ export namespace Prisma {
   export type SpaceUpdateWithoutAdminInput = {
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chat?: ChatUpdateManyWithoutSpaceNestedInput
     participants?: SpaceParticipantUpdateManyWithoutSpaceNestedInput
@@ -9972,7 +10018,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chat?: ChatUncheckedUpdateManyWithoutSpaceNestedInput
     participants?: SpaceParticipantUncheckedUpdateManyWithoutSpaceNestedInput
@@ -9983,7 +10030,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
-    isLive?: BoolFieldUpdateOperationsInput | boolean
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -132,7 +132,8 @@ exports.Prisma.SpaceScalarFieldEnum = {
   id: 'id',
   name: 'name',
   subject: 'subject',
-  isLive: 'isLive',
+  isPublic: 'isPublic',
+  password: 'password',
   createdAt: 'createdAt',
   adminId: 'adminId'
 };

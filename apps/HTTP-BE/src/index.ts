@@ -18,8 +18,6 @@ app.use(cors({
     credentials: true
 }));
 
-
-
 app.post('/signup' , async (req , res) => {
     const parsedData = SignUpSchema.safeParse(req.body);
 
@@ -156,17 +154,40 @@ app.post('/createSpace', middleware , async (req , res) => {
     const userId = req.userId;
 
     try {
-        const space = await prismaClient.space.create({
-            data: {
-                name: parsedData.data.name,
-                subject: parsedData.data.subject,
-                adminId: userId
+        if (parsedData.data.isPublic === true) {
+            const space = await prismaClient.space.create({
+                data: {
+                    name: parsedData.data.name,
+                    subject: parsedData.data.subject,
+                    adminId: userId
+                }
+            })
+            res.json({
+                spaceId: space.id,
+                message: 'Space created Succesfully'
+            })
+        } else {
+            const password = parsedData.data.password
+            
+            if (password) {
+                bcrypt.hash(password , 10)
             }
-        })
-        res.json({
-            spaceId: space.id,
-            message: 'Space created Succesfully'
-        })
+
+            const space = await prismaClient.space.create({
+                data: {
+                    name: parsedData.data.name,
+                    subject: parsedData.data.subject,
+                    isPublic: parsedData.data.isPublic,
+                    password: parsedData.data.password,
+                    adminId: userId
+                }
+            })
+            res.json({
+                spaceId: space.id,
+                message: 'Space created Succesfully'
+            })
+        }
+        
     } catch (e) {
         res.status(403).json({
             message: "Failed to create Space"
@@ -177,6 +198,7 @@ app.post('/createSpace', middleware , async (req , res) => {
 app.post('/joinSpace/:id', middleware , async (req , res) => {
     const spaceId = Number(req.params.id);
     const userId = req.userId;
+    const password = req.body;
 
     if (!spaceId || !userId) {
         res.status(403).json({
@@ -186,17 +208,44 @@ app.post('/joinSpace/:id', middleware , async (req , res) => {
     }
 
     try {
-        const participant = await prismaClient.spaceParticipant.create({
-            data: {
-                spaceId,
-                userId,
-                role: "member"
+        const space = await prismaClient.space.findUnique({
+            where: {
+                id: spaceId
             }
-        })
-        res.json({
-            messsage: "Joined Space Succesfully",
-            participantId: participant.id
-        })
+        });
+
+        if (space && space.isPublic) {
+            const participant = await prismaClient.spaceParticipant.create({
+                data: {
+                    spaceId,
+                    userId,
+                    role: "member"
+                }
+            })
+            res.json({
+                messsage: "Joined Space Succesfully",
+                participantId: participant.id
+            })
+        } else {
+            if (space && space.password && await bcrypt.compare(space.password , password)) {
+                const participant = await prismaClient.spaceParticipant.create({
+                    data: {
+                        spaceId,
+                        userId,
+                        role: "member"
+                    }
+                })
+                res.json({
+                    messsage: "Joined Space Succesfully",
+                    participantId: participant.id
+                })
+            } else {
+                res.status(403).json({
+                    messsage: "Invalid Password",
+                })
+            }
+        }
+        
     } catch (e) {
         res.status(403).json({
             message : "Failed to join space"

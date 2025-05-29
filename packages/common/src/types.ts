@@ -15,6 +15,8 @@ export const SignInSchema = z.object({
 export const SpaceSchema = z.object({
     name: z.string().min(3),
     subject: z.string().min(3),
+    isPublic: z.boolean().optional(),
+    password: z.string().optional()
 })
 
 export const DoubtSchema = z.object({
