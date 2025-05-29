@@ -5,9 +5,16 @@ import jwt from "jsonwebtoken";
 import { AnswerSchema, DoubtSchema, SignInSchema, SignUpSchema, SpaceSchema } from "@repo/common/types";
 import bcrypt from "bcrypt";
 import { middleware } from "./middleware";
+import cors from "cors"
 
 const app = express();
 app.use(express.json());
+
+
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 
 app.post('/signup' , async (req , res) => {
     const parsedData = SignUpSchema.safeParse(req.body);
