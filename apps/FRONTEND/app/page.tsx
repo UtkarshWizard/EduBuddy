@@ -2,7 +2,6 @@ import AuthGuard from "@/components/AuthGuard";
 import Navbar from "@/components/Navbar";
 import SpaceList from "@/components/SpaceList";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -19,15 +18,7 @@ export default function Home() {
             Create a Space
           </h2>
           <div className="flex items-center gap-2 w-full justify-center">
-            <Input
-              className="border-black/40 bg-white/10 text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-500"
-              placeholder="Enter the name of space"
-            />
-            <Input
-              className="border-black/40 bg-white/10 text-black placeholder:text-gray-400 focus:border-purple-500 focus:ring-purple-500"
-              placeholder="Enter the Subject/Exam"
-            />
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white w-[16vw]">
               Create
             </Button>
           </div>

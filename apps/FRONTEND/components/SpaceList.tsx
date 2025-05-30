@@ -33,7 +33,7 @@ export default function SpaceList () {
             const res = await axios.get(`${BACKEND_URL}/spaces`, {
                 withCredentials: true,
             });
-            const data = await res.data.json();
+            const data = await res.data;
             setSpaces(data.spaces);
         } catch (error) {
             console.error('Error fetching spaces:', error);

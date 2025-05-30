@@ -17,7 +17,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
       try {
         await axios.get(`${BACKEND_URL}/`, { withCredentials: true });
       } catch (err) {
-        router.push("/auth/signin");
+        router.push("/auth/signin?expired=true");
       }
     }
     checkAuth();

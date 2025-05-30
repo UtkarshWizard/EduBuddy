@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import axios from "axios"
 import { BACKEND_URL } from "@/config"
 
@@ -22,6 +22,8 @@ export default function SignIn() {
   const [error, setError] = useState(null);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const expired = searchParams.get('expired');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -61,6 +63,7 @@ export default function SignIn() {
 
       <Card className="w-full max-w-md relative backdrop-blur-sm bg-white/80 border-0 shadow-2xl">
         <CardHeader className="space-y-1 text-center">
+          {expired && <p className="my-4 text-sm text-red-600 text-center bg-red-100 p-2 rounded transition-all duration-300 opacity-100 max-h-20 transform translate-y-0">Session expired. Please log in again.</p>}
           <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Welcome Back
           </CardTitle>
