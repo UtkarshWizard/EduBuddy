@@ -14,7 +14,7 @@ export default function Home() {
             <p className="font-bold text-4xl text-white ">Spaces</p>
           </div>
         </div>
-        <main className="container px-8 md:px-16 py-12">
+        <main className="w-full px-8 md:px-16 py-12">
           <h2 className="text-3xl font-bold text-center pb-8 text-purple-800">
             Create a Space
           </h2>

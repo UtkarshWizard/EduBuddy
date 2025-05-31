@@ -18,7 +18,7 @@ export default function Navbar () {
                 </svg>
                 EduBuddy
             </span>
-            <div className="pl-8 flex justify-center items-center gap-8">
+            <div className="flex items-center gap-8">
                 <Link href="/" className="text-gray-500 font-medium hover:text-gray-900" >Spaces</Link>
                 <Link href="/" className="text-gray-500 font-medium hover:text-gray-900" >Profile</Link>
                 <Link href="/" className="text-gray-500 font-medium hover:text-gray-900" >Resources</Link>
