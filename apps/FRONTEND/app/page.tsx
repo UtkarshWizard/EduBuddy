@@ -1,4 +1,5 @@
 import AuthGuard from "@/components/AuthGuard";
+import { CreateSpaceForm } from "@/components/CreateSpaceForm";
 import Navbar from "@/components/Navbar";
 import SpaceList from "@/components/SpaceList";
 import { Button } from "@/components/ui/button";
@@ -18,9 +19,7 @@ export default function Home() {
             Create a Space
           </h2>
           <div className="flex items-center gap-2 w-full justify-center">
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white w-[16vw]">
-              Create
-            </Button>
+            <CreateSpaceForm />
           </div>
           <h2 className="text-3xl font-bold text-purple-800 text-center pt-8">
             Or <br />

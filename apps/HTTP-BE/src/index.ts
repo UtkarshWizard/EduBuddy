@@ -169,16 +169,22 @@ app.post('/createSpace', middleware , async (req , res) => {
         } else {
             const password = parsedData.data.password
             
-            if (password) {
-                bcrypt.hash(password , 10)
+            if (!password) {
+                res.json({
+                    message: "No password provided"
+                })
+                return
             }
+            
+            const hashedPassword = await bcrypt.hash(password , 10)
+            
 
             const space = await prismaClient.space.create({
                 data: {
                     name: parsedData.data.name,
                     subject: parsedData.data.subject,
                     isPublic: parsedData.data.isPublic,
-                    password: parsedData.data.password,
+                    password: hashedPassword,
                     adminId: userId
                 }
             })
