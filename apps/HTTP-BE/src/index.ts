@@ -162,8 +162,19 @@ app.post('/createSpace', middleware , async (req , res) => {
                     adminId: userId
                 }
             })
+
+            
+            const participant = await prismaClient.spaceParticipant.create({
+                data: {
+                    spaceId: space.id,
+                    userId,
+                    role: "admin"
+                }
+            })
+            
             res.json({
                 spaceId: space.id,
+                partcipantId: participant.id,
                 message: 'Space created Succesfully'
             })
         } else {
@@ -188,8 +199,18 @@ app.post('/createSpace', middleware , async (req , res) => {
                     adminId: userId
                 }
             })
+
+            const participant = await prismaClient.spaceParticipant.create({
+                data: {
+                    spaceId: space.id,
+                    userId,
+                    role: "admin"
+                }
+            })
+
             res.json({
                 spaceId: space.id,
+                participantId: participant.id,
                 message: 'Space created Succesfully'
             })
         }
