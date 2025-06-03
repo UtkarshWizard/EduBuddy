@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 
 export function middleware (req: Request , res: Response , next: NextFunction) {
     const token = req.cookies.token;
-    console.log(token)
 
     if (!token) {
         res.status(403).json({

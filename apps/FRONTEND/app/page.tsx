@@ -2,7 +2,6 @@ import AuthGuard from "@/components/AuthGuard";
 import { CreateSpaceForm } from "@/components/CreateSpaceForm";
 import Navbar from "@/components/Navbar";
 import SpaceList from "@/components/SpaceList";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
