@@ -20,6 +20,7 @@
     "@repo/db": "workspace:*",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/ws": "^8.18.1",
+    "cookie": "^1.0.2",
     "jsonwebtoken": "^9.0.2",
     "ws": "^8.18.2"
   }

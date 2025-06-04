@@ -2,6 +2,7 @@ import { WebSocket, WebSocketServer } from "ws";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { prismaClient } from "@repo/db/client";
+import cookie from "cookie";
 
 const wss = new WebSocketServer({ port : 8080 });
 
@@ -33,11 +34,13 @@ function verifyUser( token : string ) : string | null {
 
 wss.on('connection' , function connection(ws , request) {
 
-    const url = request.url;
-    if (!url) return ws.close();
-
-    const queryParams = new URLSearchParams(url.split('?')[1]);
-    const token = queryParams.get('token') || '';
+    const cookies = cookie.parse(request.headers.cookie || "");
+    const token = cookies.token;
+    if (!token) {
+        ws.close(4001, "Missing token");
+        return;
+    }
+    
     const userId = verifyUser(token);
     if (!userId) return ws.close();
 

@@ -39,7 +39,7 @@ export default function SpaceCard({space} : props) {
                 <span className="text-sm text-muted-foreground">
                 Created At - {new Date(space.createdAt).toLocaleString()}
                 </span>
-                <Link href="/space">
+                <Link href={`/space/${space.id}`}>
                     <Button
                         className="bg-indigo-600 hover:bg-indigo-700"
                     >
