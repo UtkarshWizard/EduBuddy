@@ -8,8 +8,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock, HelpCircle, MessageCircle, Send, Users } from "lucide-react";
 import Link from "next/link";
 
-export default function SpacePage ({ params } : { params : {id: number}}) {
-    const spaceId = params.id;
+export default async function SpacePage ({ params } : { params : {id: number}}) {
+    const awaitedParams = await params;
+    const spaceId = awaitedParams.id;
+    console.log(spaceId)
 
     return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
          <div className="border-b border-white/10 bg-black/20 backdrop-blur-sm">

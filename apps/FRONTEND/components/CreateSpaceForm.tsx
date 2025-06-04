@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/config";
 import { useRouter } from "next/navigation";
+import { useSocket } from "@/app/hooks/useSocket";
 
 export function CreateSpaceForm () {
     const [name, setName] = useState("");
@@ -17,22 +18,42 @@ export function CreateSpaceForm () {
     const [password , setPassword] = useState("");
     const [open , setOpen] = useState(false);
     const router = useRouter();
+    const {socket , loading} = useSocket();
 
     const handleCreate = async () => {
         try {
-            await axios.post(`${BACKEND_URL}/createSpace` , {
+            const res = await axios.post(`${BACKEND_URL}/createSpace` , {
                 name,
                 subject,
                 password,
                 isPublic
-            } , {withCredentials: true})
+            } , {withCredentials: true});
+
+            if (socket && !loading) {
+                
+                if (socket.readyState === WebSocket.OPEN) {
+                    socket.send(JSON.stringify({
+                        type: "join_space",
+                        spaceId: res.data.spaceId
+                    }))
+                   } else {
+                        socket.onopen = () => {
+                            socket.send(JSON.stringify({
+                                type: "join_space",
+                                spaceId: res.data.spaceId
+                            }))
+                        }
+                   }
+                }
 
             setName("");
             setIsPublic(true)
             setSubject("")
             setPassword("")
             setOpen(false)
-            router.push("/")
+            setTimeout(() => {
+                router.push(`/space/${res.data.spaceId}`);
+            }, 100); 
         } catch (e) {
             console.error('Failed to create a space' , e)
         }

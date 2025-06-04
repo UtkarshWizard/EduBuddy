@@ -2,7 +2,7 @@ import { WebSocket, WebSocketServer } from "ws";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { prismaClient } from "@repo/db/client";
-import cookie from "cookie";
+import * as cookie from "cookie";
 
 const wss = new WebSocketServer({ port : 8080 });
 
@@ -36,22 +36,27 @@ wss.on('connection' , function connection(ws , request) {
 
     const cookies = cookie.parse(request.headers.cookie || "");
     const token = cookies.token;
+
     if (!token) {
         ws.close(4001, "Missing token");
         return;
     }
-    
+
     const userId = verifyUser(token);
+    console.log(userId)
     if (!userId) return ws.close();
 
     const user: User = {ws , userId , spaceId: null};
+    console.log(user)
     Users.push(user)
+    console.log("Users: " , Users)
 
     ws.on('message' , async function message(data) {
         const parsedData = JSON.parse(data.toString());
 
         if (parsedData.type === "join_space") {
             const currentUser = Users.find( x => x.ws === ws);
+            console.log(currentUser)
 
             if (!currentUser) {
                 return
@@ -158,17 +163,43 @@ wss.on('connection' , function connection(ws , request) {
             })
         }
 
+        // if (parsedData.type === "get_users_in_space") {
+        //     const spaceUsers = Users
+        //         .filter(u => u.spaceId === parsedData.spaceId)
+        //         .map(u => u.userId);
+
+        //     ws.send(JSON.stringify({
+        //         type: "space_users",
+        //         users: spaceUsers
+        //     }));
+        // }
+
+        // used db call here for now. needs to fix.
+
         if (parsedData.type === "get_users_in_space") {
-            const spaceUsers = Users
-                .filter(u => u.spaceId === parsedData.spaceId)
-                .map(u => u.userId);
+            // Fetch participants from DB
+            const participants = await prismaClient.spaceParticipant.findMany({
+                where: { spaceId: Number(parsedData.spaceId) },
+                include: { user: true } // if you want user details
+            });
+
+            const spaceUsers = participants.map(p => ({
+                id: p.id,
+                userId: p.userId,
+                spaceId: p.spaceId,
+                role: p.role,
+                user: {
+                id: p.user.id,
+                name: p.user.name,
+                avatarUrl: p.user.avatarUrl,
+                }
+            }));
 
             ws.send(JSON.stringify({
                 type: "space_users",
-                users: spaceUsers
+                users: spaceUsers,
             }));
         }
-
     });
 
     ws.on('close' , () => {

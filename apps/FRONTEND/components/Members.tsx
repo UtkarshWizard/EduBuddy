@@ -26,38 +26,36 @@ type Roles = "admin" | "member" | "moderator";
 export default function Members({spaceId} : props) {
 
     const [members , setMembers] = useState<Members[]>([]);
-    const {loading , socket} = useSocket();
+    console.log(members)
+    const {loading , socket , addListener} = useSocket();
 
     useEffect(() => {
-        if (socket && !loading) {
-            socket.onopen = () => {
-                socket.send(JSON.stringify({
-                    type: "get_users_in_space",
-                    spaceId
-                }))
-            }
+    if (!socket || loading) return;
 
-            socket.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-
-                if (data.type === "space_users") {
-                    setMembers(data.users)
-                }
-            }
-
-            socket.onerror = (err) => {
-                console.error("WebSocket error:", err);
-            };
-
-            socket.onclose = () => {
-                console.log("WebSocket closed");
-            };
-
-            return () => {
-                socket.close();
-            };
+    const unsubscribe = addListener((data) => {
+        if (data.type === "space_users") {
+            console.log("data: ", data.users);
+            setMembers(data.users);
         }
-    }, [socket , loading , spaceId])
+    });
+
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({
+            type: "get_users_in_space",
+            spaceId
+        }));
+    } else {
+        socket.onopen = () => {
+            socket.send(JSON.stringify({
+                type: "get_users_in_space",
+                spaceId
+            }));
+        };
+    }
+
+    return unsubscribe;
+}, [socket, loading, spaceId]);
+
 
     return (
     <>
