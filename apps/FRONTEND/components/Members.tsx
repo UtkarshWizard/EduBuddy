@@ -26,7 +26,7 @@ type Roles = "admin" | "member" | "moderator";
 export default function Members({spaceId} : props) {
 
     const [members , setMembers] = useState<Members[]>([]);
-    console.log(members)
+    // console.log(members)
     const {loading , socket , addListener} = useSocket();
 
     useEffect(() => {

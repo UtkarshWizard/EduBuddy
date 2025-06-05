@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
+import JoinButton from "./JoinButton";
 
 type props = {
     space: {
@@ -37,15 +37,9 @@ export default function SpaceCard({space} : props) {
             </CardContent>
             <CardFooter className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">
-                Created At - {new Date(space.createdAt).toLocaleString()}
-                </span>
-                <Link href={`/space/${space.id}`}>
-                    <Button
-                        className="bg-indigo-600 hover:bg-indigo-700"
-                    >
-                        Join
-                    </Button>
-                </Link>
+                    Created At - {new Date(space.createdAt).toLocaleString()}
+                </span> 
+                <JoinButton id={space.id} />
             </CardFooter>
         </Card>
     </div>

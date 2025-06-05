@@ -43,13 +43,12 @@ wss.on('connection' , function connection(ws , request) {
     }
 
     const userId = verifyUser(token);
-    console.log(userId)
+    // console.log(userId)
     if (!userId) return ws.close();
 
     const user: User = {ws , userId , spaceId: null};
-    console.log(user)
     Users.push(user)
-    console.log("Users: " , Users)
+    // console.log("Users: " , Users)
 
     ws.on('message' , async function message(data) {
         const parsedData = JSON.parse(data.toString());
